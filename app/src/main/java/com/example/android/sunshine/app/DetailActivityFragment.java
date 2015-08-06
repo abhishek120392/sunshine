@@ -111,12 +111,16 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
         MenuItem menuItem = menu.findItem(R.id.action_share);
 
         // Get the provider and hold onto it to set/change the share intent.
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-
+//        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        mShareActionProvider = new ShareActionProvider(getActivity());
+        MenuItemCompat.setActionProvider(menuItem, mShareActionProvider);
         // If onLoadFinished happens before this, we can go ahead and set the share intent now.
-        if (mForecast != null) {
+/*        if (mForecast != null) {
             mShareActionProvider.setShareIntent(createShareForecastIntent());
+        } else {
+            Log.e(LOG_TAG, " mShareActionProvider is null");
         }
+*/
     }
 
     private Intent createShareForecastIntent() {
